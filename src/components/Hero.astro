@@ -1,0 +1,153 @@
+---
+interface Props {
+  city?: string;
+  state?: string;
+  stateAbbr?: string;
+  vertical?: 'hvac' | 'plumbing' | 'roofing';
+  service?: string;
+  headline?: string;
+  subheadline?: string;
+  rating?: number;
+  reviewCount?: number;
+  phone?: string;
+}
+
+const {
+  city = 'Tampa',
+  state = 'Florida',
+  stateAbbr = 'FL',
+  vertical = 'hvac',
+  service,
+  headline,
+  subheadline,
+  rating = 4.9,
+  reviewCount = 500,
+  phone = import.meta.env.PUBLIC_DEFAULT_PHONE || '8135551234',
+} = Astro.props;
+
+const hasSlot = Astro.slots.has('default');
+
+// Generate default headlines based on vertical/service
+const verticalNames: Record<string, string> = {
+  hvac: 'HVAC',
+  plumbing: 'Plumbing',
+  roofing: 'Roofing',
+};
+
+const serviceNames: Record<string, string> = {
+  'ac-repair': 'AC Repair',
+  'heating-repair': 'Heating Repair',
+  'hvac-installation': 'HVAC Installation',
+  'maintenance': 'HVAC Maintenance',
+  'drain-cleaning': 'Drain Cleaning',
+  'water-heater': 'Water Heater Service',
+  'leak-repair': 'Leak Repair',
+  'pipe-repair': 'Pipe Repair',
+  'roof-repair': 'Roof Repair',
+  'roof-replacement': 'Roof Replacement',
+  'roof-inspection': 'Roof Inspection',
+  'storm-damage': 'Storm Damage Repair',
+};
+
+const defaultHeadline = service
+  ? `${serviceNames[service] || service} in ${city}, ${stateAbbr}`
+  : `${verticalNames[vertical]} Services in ${city}, ${stateAbbr}`;
+
+const defaultSubheadline = '24/7 Emergency Service • Licensed & Insured • Free Estimates';
+
+const displayHeadline = headline || defaultHeadline;
+const displaySubheadline = subheadline || defaultSubheadline;
+
+// Format phone
+const formatPhone = (num: string) => {
+  const cleaned = num.replace(/\D/g, '');
+  if (cleaned.length === 10) {
+    return `(${cleaned.slice(0,3)}) ${cleaned.slice(3,6)}-${cleaned.slice(6)}`;
+  }
+  return num;
+};
+const telPhone = phone.replace(/\D/g, '');
+---
+
+<section class="bg-gradient-to-br from-navy to-navy-light text-white py-16 md:py-24 lg:py-32">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <!-- Rating Badge -->
+    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 animate-fade-in">
+      <div class="flex text-yellow-400">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+        ))}
+      </div>
+      <span class="text-sm font-medium">{rating}/5 from {reviewCount}+ Reviews</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance animate-slide-up">
+      {displayHeadline}
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+      {displaySubheadline}
+    </p>
+
+    <!-- Trust Badges -->
+    <div class="flex flex-wrap justify-center gap-3 mb-10">
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>24/7 Service</span>
+      </div>
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        <span>Licensed & Insured</span>
+      </div>
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+        </svg>
+        <span>Satisfaction Guaranteed</span>
+      </div>
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <span>Same-Day Service</span>
+      </div>
+    </div>
+
+    {hasSlot ? (
+      <!-- Embedded Form -->
+      <div id="lead-form" class="mt-8 max-w-md mx-auto">
+        <slot />
+      </div>
+    ) : (
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#lead-form"
+          class="btn-primary text-lg px-8 py-4"
+        >
+          Get Your Free Quote
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a
+          href={`tel:${telPhone}`}
+          class="ringba_phone_number btn-secondary text-lg px-8 py-4 bg-white/10 border-white/30 text-white hover:bg-white/20"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          Call {formatPhone(phone)}
+        </a>
+      </div>
+    )}
+  </div>
+</section>

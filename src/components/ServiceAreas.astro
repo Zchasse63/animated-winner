@@ -1,0 +1,58 @@
+---
+interface Props {
+  state: string;
+  stateAbbr: string;
+  cities?: string[];
+  vertical?: 'hvac' | 'plumbing' | 'roofing';
+  className?: string;
+}
+
+const { state, stateAbbr, cities, vertical = 'hvac', className = '' } = Astro.props;
+
+// Default cities by state
+const defaultCities: Record<string, string[]> = {
+  FL: ['Miami', 'Tampa', 'Orlando', 'Jacksonville', 'Fort Lauderdale', 'St. Petersburg', 'Clearwater', 'Sarasota', 'West Palm Beach', 'Naples'],
+  GA: ['Atlanta', 'Savannah', 'Augusta', 'Columbus', 'Macon', 'Athens'],
+  AL: ['Birmingham', 'Mobile', 'Huntsville', 'Montgomery', 'Tuscaloosa'],
+  SC: ['Charleston', 'Columbia', 'Greenville', 'Myrtle Beach', 'Spartanburg'],
+  NC: ['Charlotte', 'Raleigh', 'Greensboro', 'Durham', 'Wilmington', 'Asheville'],
+  TN: ['Nashville', 'Memphis', 'Knoxville', 'Chattanooga', 'Murfreesboro']
+};
+
+const displayCities = cities || defaultCities[stateAbbr] || [];
+---
+
+<section class={`py-16 md:py-24 bg-gray-50 ${className}`}>
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">
+      Service Areas in {state}
+    </h2>
+    <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+      We connect homeowners with top-rated professionals throughout {state} and surrounding areas.
+    </p>
+
+    {displayCities.length > 0 && (
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {displayCities.map((city) => {
+          const citySlug = city.toLowerCase().replace(/\s+/g, '-');
+          const href = `/${stateAbbr.toLowerCase()}/${citySlug}/${vertical}/`;
+          return (
+            <a
+              href={href}
+              class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-teal"
+            >
+              <span class="font-medium text-navy hover:text-teal transition-colors">
+                {city}
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    )}
+
+    <p class="text-center text-gray-500 mt-8 text-sm">
+      Don't see your city? We likely serve your area too.
+      <a href="#lead-form" class="text-teal hover:underline">Get a free quote</a> to find out.
+    </p>
+  </div>
+</section>

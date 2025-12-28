@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  vertical?: 'hvac' | 'plumbing' | 'roofing';
+  state?: string;
+  city?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = 'Get connected with top-rated local HVAC professionals. 24/7 emergency service, licensed & insured contractors.',
+  vertical = 'hvac',
+  state = '',
+  city = '',
+  canonicalUrl,
+  noIndex = false,
+} = Astro.props;
+
+// Ringba campaign IDs by vertical
+const RINGBA_CAMPAIGNS: Record<string, string> = {
+  hvac: import.meta.env.RINGBA_HVAC_CAMPAIGN_ID || '',
+  plumbing: import.meta.env.RINGBA_PLUMBING_CAMPAIGN_ID || '',
+  roofing: import.meta.env.RINGBA_ROOFING_CAMPAIGN_ID || '',
+};
+
+const campaignId = RINGBA_CAMPAIGNS[vertical];
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'http://localhost:4321';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title}>
+  <meta name="description" content={description}>
+
+  <!-- Robots -->
+  {noIndex && <meta name="robots" content="noindex, nofollow">}
+
+  <!-- Canonical URL -->
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl || siteUrl}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content={title}>
+  <meta property="twitter:description" content={description}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Ringba Call Tracking -->
+  {campaignId && (
+    <script src={`//b-js.ringba.com/${campaignId}`} async></script>
+  )}
+  <script define:vars={{ vertical, state, city }}>
+    window._rgba_tags = window._rgba_tags || [];
+    if (vertical) window._rgba_tags.push({ vertical });
+    if (state) window._rgba_tags.push({ state });
+    if (city) window._rgba_tags.push({ city });
+    window._rgba_tags.push({ landing_page: window.location.pathname });
+
+    // Capture UTM params
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source');
+    const utmMedium = urlParams.get('utm_medium');
+    const utmCampaign = urlParams.get('utm_campaign');
+    const keyword = urlParams.get('keyword') || urlParams.get('utm_term');
+
+    if (utmSource) window._rgba_tags.push({ source: utmSource });
+    if (utmMedium) window._rgba_tags.push({ medium: utmMedium });
+    if (utmCampaign) window._rgba_tags.push({ campaign: utmCampaign });
+    if (keyword) window._rgba_tags.push({ keyword });
+  </script>
+
+  <!-- TrustedForm -->
+  <script type="text/javascript">
+    (function() {
+      var tf = document.createElement('script');
+      tf.type = 'text/javascript'; tf.async = true;
+      tf.src = ("https:" == document.location.protocol ? 'https' : 'http') +
+               "://api.trustedform.com/trustedform.js?field=xxTrustedFormCertUrl&ping_field=xxTrustedFormPingUrl&l=" +
+               new Date().getTime() + Math.random();
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(tf, s);
+    })();
+  </script>
+  <noscript>
+    <img src="https://api.trustedform.com/ns.gif" />
+  </noscript>
+
+  <slot name="head" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <slot />
+</body>
+</html>

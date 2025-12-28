@@ -1,0 +1,51 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  vertical: 'hvac' | 'plumbing' | 'roofing';
+  service?: string;
+  state: string;
+  stateAbbr: string;
+  city: string;
+  phone?: string;
+}
+
+const {
+  title,
+  description,
+  vertical,
+  service,
+  state,
+  stateAbbr,
+  city,
+  phone = import.meta.env.PUBLIC_DEFAULT_PHONE || '8135551234',
+} = Astro.props;
+
+const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL}${Astro.url.pathname}`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  vertical={vertical}
+  state={stateAbbr}
+  city={city.toLowerCase().replace(/\s+/g, '-')}
+  canonicalUrl={canonicalUrl}
+>
+  <slot name="head" slot="head" />
+
+  <Header phone={phone} />
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <Footer
+    companyName={import.meta.env.PUBLIC_COMPANY_NAME || 'HomeService Leads'}
+    phone={phone}
+  />
+</BaseLayout>

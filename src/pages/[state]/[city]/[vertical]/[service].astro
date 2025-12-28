@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Header.astro';
+import Footer from '../../../../components/Footer.astro';
+import Hero from '../../../../components/Hero.astro';
+import TrustBadges from '../../../../components/TrustBadges.astro';
+import HowItWorks from '../../../../components/HowItWorks.astro';
+import WhyChooseUs from '../../../../components/WhyChooseUs.astro';
+import FAQ from '../../../../components/FAQ.astro';
+import ServiceAreas from '../../../../components/ServiceAreas.astro';
+import FinalCTA from '../../../../components/FinalCTA.astro';
+import LocalSchema from '../../../../components/LocalSchema.astro';
+import { LeadForm } from '../../../../components/LeadForm';
+import { getState, getCity, getCitiesByState, isValidState, isValidCity } from '../../../../config/geo';
+import { getVertical, isValidVertical } from '../../../../config/verticals';
+import { getService, isServiceInVertical, isValidService } from '../../../../config/services';
+import type { GetStaticPaths } from 'astro';
+import { getEnabledCities } from '../../../../config/geo';
+import { verticalList } from '../../../../config/verticals';
+import { serviceList } from '../../../../config/services';
+
+export const prerender = true;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: { params: { state: string; city: string; vertical: string; service: string } }[] = [];
+
+  for (const city of getEnabledCities()) {
+    for (const vertical of verticalList) {
+      for (const service of serviceList) {
+        if (service.vertical === vertical.id) {
+          paths.push({
+            params: {
+              state: city.stateSlug,
+              city: city.slug,
+              vertical: vertical.slug,
+              service: service.slug,
+            },
+          });
+        }
+      }
+    }
+  }
+
+  return paths;
+};
+
+const { state: stateSlug, city: citySlug, vertical: verticalSlug, service: serviceSlug } = Astro.params;
+
+// Validate params
+if (!isValidState(stateSlug!) || !isValidCity(citySlug!, stateSlug!)) {
+  return Astro.redirect('/404');
+}
+
+if (!isValidVertical(verticalSlug!) || !isValidService(serviceSlug!)) {
+  return Astro.redirect('/404');
+}
+
+if (!isServiceInVertical(serviceSlug!, verticalSlug!)) {
+  return Astro.redirect('/404');
+}
+
+const stateData = getState(stateSlug!)!;
+const cityData = getCity(citySlug!, stateSlug!)!;
+const verticalData = getVertical(verticalSlug!)!;
+const serviceData = getService(serviceSlug!)!;
+
+// Page content
+const title = `${serviceData.name} in ${cityData.name}, ${stateData.abbreviation} | Free Quotes`;
+const description = `Need ${serviceData.name.toLowerCase()} in ${cityData.name}? Get free quotes from top-rated local ${verticalData.name.toLowerCase()} pros. Fast response, no obligation!`;
+
+// Dynamic phone (will be replaced by Ringba)
+const phone = '(813) 555-1234';
+
+// Nearby cities for service areas
+const nearbyCities = getCitiesByState(stateSlug!).filter(c => c.slug !== citySlug).slice(0, 8);
+
+// FAQ items specific to service
+const faqItems = [
+  {
+    question: `How much does ${serviceData.name.toLowerCase()} cost in ${cityData.name}?`,
+    answer: `${serviceData.name} costs vary based on the specific issue and scope of work. Most ${cityData.name} homeowners pay between $150-$500 for standard repairs. Get free quotes from local pros to compare prices.`,
+  },
+  {
+    question: `How quickly can I get ${serviceData.name.toLowerCase()}?`,
+    answer: `Many ${verticalData.name.toLowerCase()} pros in ${cityData.name} offer same-day or next-day service for urgent needs. For emergencies, 24/7 service is often available.`,
+  },
+  {
+    question: `Are your ${verticalData.name.toLowerCase()} contractors licensed?`,
+    answer: `Yes! We only connect you with licensed, insured ${verticalData.name.toLowerCase()} contractors in ${cityData.name}, ${stateData.abbreviation}. All pros are verified and background-checked.`,
+  },
+  {
+    question: `Is the quote really free?`,
+    answer: `Absolutely! There's no cost or obligation to get quotes. Compare prices from multiple ${cityData.name} ${verticalData.name.toLowerCase()} pros and choose the best one for you.`,
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header phone={phone} />
+
+  <main>
+    <Hero
+      city={cityData.name}
+      state={stateData.name}
+      stateAbbr={stateData.abbreviation}
+      vertical={verticalData.id as 'hvac' | 'plumbing' | 'roofing'}
+      service={serviceSlug}
+      phone={phone}
+    >
+      <LeadForm
+        client:load
+        vertical={verticalData.id as 'hvac' | 'plumbing' | 'roofing'}
+        city={cityData.name}
+        state={stateData.abbreviation}
+        phone={phone}
+      />
+    </Hero>
+
+    <TrustBadges />
+
+    <HowItWorks />
+
+    <WhyChooseUs vertical={verticalData.id as 'hvac' | 'plumbing' | 'roofing'} />
+
+    <FAQ
+      faqs={faqItems}
+      city={cityData.name}
+      vertical={verticalData.id as 'hvac' | 'plumbing' | 'roofing'}
+    />
+
+    <ServiceAreas
+      state={stateData.name}
+      stateAbbr={stateData.abbreviation}
+      cities={nearbyCities.map(c => c.name)}
+      vertical={verticalData.id as 'hvac' | 'plumbing' | 'roofing'}
+    />
+
+    <FinalCTA
+      phone={phone}
+      headline={`Get ${serviceData.name} in ${cityData.name} Today`}
+      subheadline="Free quotes from licensed, insured professionals. No obligation."
+    />
+  </main>
+
+  <Footer phone={phone} />
+
+  <LocalSchema
+    businessName={`${cityData.name} ${verticalData.name} Pros`}
+    city={cityData.name}
+    state={stateData.name}
+    stateAbbr={stateData.abbreviation}
+    vertical={verticalData.id as 'hvac' | 'plumbing' | 'roofing'}
+    service={serviceSlug}
+    phone={phone}
+  />
+</BaseLayout>

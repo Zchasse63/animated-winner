@@ -1,0 +1,49 @@
+{
+  "name": "hvac-leadgen-platform",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "HVAC/Plumbing/Roofing lead generation platform for Southeast US",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "seed:florida": "npx tsx scripts/seed-florida.ts",
+    "seed:pages": "npx tsx scripts/seed-pages.ts",
+    "generate:sitemap": "npx tsx scripts/generate-sitemap.ts",
+    "test:sd": "npx tsx scripts/test-service-direct.ts",
+    "test:ringba": "npx tsx scripts/test-ringba-webhook.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zchasse63/animated-winner.git"
+  },
+  "keywords": [
+    "hvac",
+    "leadgen",
+    "astro",
+    "supabase"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/node": "^9.5.1",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "@hookform/resolvers": "^5.2.2",
+    "@supabase/supabase-js": "^2.89.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hook-form": "^7.69.0",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}

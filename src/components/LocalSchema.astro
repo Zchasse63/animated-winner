@@ -1,0 +1,123 @@
+---
+interface Props {
+  businessName?: string;
+  city: string;
+  state: string;
+  stateAbbr: string;
+  vertical: 'hvac' | 'plumbing' | 'roofing';
+  service?: string;
+  phone?: string;
+  rating?: number;
+  reviewCount?: number;
+}
+
+const {
+  businessName = import.meta.env.PUBLIC_COMPANY_NAME || 'HomeService Leads',
+  city,
+  state,
+  stateAbbr,
+  vertical,
+  service,
+  phone = import.meta.env.PUBLIC_DEFAULT_PHONE || '8135551234',
+  rating = 4.9,
+  reviewCount = 500,
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://example.com';
+
+// Service type mappings
+const serviceTypes: Record<string, string[]> = {
+  hvac: ['HVAC Contractor', 'Air Conditioning Contractor', 'Heating Contractor'],
+  plumbing: ['Plumber', 'Plumbing Service'],
+  roofing: ['Roofing Contractor', 'Roofing Service']
+};
+
+// Format phone for schema
+const formattedPhone = phone.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '+1-$1-$2-$3');
+
+// Generate LocalBusiness schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": serviceTypes[vertical]?.[0] || "HomeAndConstructionBusiness",
+  "name": `${businessName} - ${city}`,
+  "description": `Professional ${vertical.toUpperCase()} services in ${city}, ${stateAbbr}. Licensed, insured, and available 24/7.`,
+  "url": `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${vertical}/`,
+  "telephone": formattedPhone,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": city,
+    "addressRegion": stateAbbr,
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": city,
+    "containedIn": {
+      "@type": "State",
+      "name": state
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": rating.toString(),
+    "reviewCount": reviewCount.toString(),
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "priceRange": "$$"
+};
+
+// Generate BreadcrumbList schema
+const breadcrumbItems = [
+  { name: "Home", url: siteUrl },
+  { name: state, url: `${siteUrl}/${stateAbbr.toLowerCase()}/` },
+  { name: city, url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/` },
+  { name: vertical.toUpperCase(), url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${vertical}/` }
+];
+
+if (service) {
+  const serviceNames: Record<string, string> = {
+    'ac-repair': 'AC Repair',
+    'heating-repair': 'Heating Repair',
+    'hvac-installation': 'HVAC Installation',
+    'maintenance': 'Maintenance',
+    'drain-cleaning': 'Drain Cleaning',
+    'water-heater': 'Water Heater',
+    'leak-repair': 'Leak Repair',
+    'roof-repair': 'Roof Repair',
+    'roof-replacement': 'Roof Replacement',
+    'storm-damage': 'Storm Damage'
+  };
+  breadcrumbItems.push({
+    name: serviceNames[service] || service,
+    url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${vertical}/${service}/`
+  });
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.url
+  }))
+};
+---
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
