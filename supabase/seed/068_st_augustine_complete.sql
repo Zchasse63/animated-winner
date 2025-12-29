@@ -57,7 +57,7 @@ INSERT INTO city_research (
   'Florida Building Code 8th Edition (2023), St. Johns County coastal requirements, Historic district preservation standards',
   '{"hvac_replacement": "Permit required", "historic_district": "Strict preservation requirements for colonial district", "architectural_review": "Required for historic properties", "coastal_zones": "Wind-rated equipment required", "inspection": "Multiple inspections required"}'::jsonb,
   'high',
-  ('ARRAY[''Climate Control of St. Johns'', ''Watson''s Comfort Systems'', ''Air Docs'', ''Snyder Air'', ''Miller''s Central Air'']'),
+  ARRAY['Climate Control of St. Johns', 'Watson''s Comfort Systems', 'Air Docs', 'Snyder Air', 'Miller''s Central Air'],
   '{"demographics": "US Census Bureau 2023", "utilities": "FPL", "research_date": "2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
