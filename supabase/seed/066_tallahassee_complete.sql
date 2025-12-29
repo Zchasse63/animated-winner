@@ -17,7 +17,7 @@ INSERT INTO cities (
   true, 94
 )
 ON CONFLICT (slug, state_abbrev) DO UPDATE SET
-  latitude, longitude = EXCLUDED.longitude, zip_codes = EXCLUDED.zip_codes, updated_at = NOW();
+  latitude = EXCLUDED.latitude, longitude = EXCLUDED.longitude, zip_codes = EXCLUDED.zip_codes, updated_at = NOW();
 
 INSERT INTO city_research (
   city_id, researched_at, population, population_source,
