@@ -36,7 +36,7 @@ INSERT INTO city_research (
   54000, 'US Census Bureau 2023',
   51238, 215000, 54.2,
   ARRAY['single-family', 'historic', 'military-housing', 'waterfront'],
-  '{"pre-1960\": 20, \"1960s-1990s\": 35, \"2000s-2010s\": 30, \"2020s\": 15}'::jsonb,
+  '{"pre-1960": 20, "1960s-1990s": 35, "2000s-2010s": 30, "2020s": 15}'::jsonb,
   90, 44, 72, 2850, 88, 65.4, 'very_high',
   'Cradle of Naval Aviation. Beautiful white sand beaches. Historic downtown. Major military presence. Gulf Coast location. High coastal hurricane risk. Significant seasonal tourism.',
   ARRAY['Naval Air Station Pensacola', 'Pensacola Naval Hospital', 'Escambia County School District', 'Sacred Heart Health System', 'Baptist Health Care', 'University of West Florida', 'Tourism industry'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'Emerald Coast Utilities Authority (ECUA)',
   125,
   'Florida Building Code 8th Edition (2023), Escambia County coastal requirements',
-  '{"hvac_replacement\": \"Permit required\", \"coastal_zones\": \"Wind-rated equipment and enhanced protection\", \"military_housing\": \"May require base approval\", \"inspection\": \"Final inspection required"}'::jsonb,
+  '{"hvac_replacement": "Permit required", "coastal_zones": "Wind-rated equipment and enhanced protection", "military_housing": "May require base approval", "inspection": "Final inspection required"}'::jsonb,
   'moderate',
   ARRAY['Diamond Air Design', 'Cool Breeze Comfort Solutions', 'Aire Serve of Pensacola', 'Keith Air Conditioning', 'Paradise Home Services'],
-  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"Gulf Power\", \"research_date\": \"2024-12-29"}'::jsonb
+  '{"demographics": "US Census Bureau 2023", "utilities": "Gulf Power", "research_date": "2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,18 +144,18 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{"avg_summer_high\": \"90°F\", \"avg_winter_low\": \"44°F\", \"avg_humidity\": \"72%\", \"cooling_degree_days\": \"2,850\", \"days_above_90\": \"88+\", \"hurricane_risk\": \"Very High"}'::jsonb,
+  '{"avg_summer_high": "90°F", "avg_winter_low": "44°F", "avg_humidity": "72%", "cooling_degree_days": "2,850", "days_above_90": "88+", "hurricane_risk": "Very High"}'::jsonb,
 
   'Ready for Gulf Coast Comfort in Pensacola?',
   'Contact us today for a consultation. From historic East Hill to NAS Pensacola to Gulf-view properties, we''ll deliver expert HVAC service with Gulf Power rebate assistance.',
 
-  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Pensacola\", \"description\": \"Professional HVAC services for Pensacola, FL specializing in Gulf Coast and historic properties.\", \"url\": \"https://coolit-hvac.com/pensacola-fl\", \"telephone\": \"+1-850-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Pensacola\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"How does Gulf Coast location affect HVAC?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Gulf salt air causes rapid corrosion and hurricane risk requires wind-rated equipment with maximum coastal protection.\"}}]}'::jsonb,
-  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Pensacola\", \"item\": \"https://coolit-hvac.com/fl/pensacola\"}]}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "HVACBusiness", "name": "Cool It HVAC - Pensacola", "description": "Professional HVAC services for Pensacola, FL specializing in Gulf Coast and historic properties.", "url": "https://coolit-hvac.com/pensacola-fl", "telephone": "+1-850-555-COOL", "areaServed": {"@type": "City", "name": "Pensacola", "addressRegion": "FL"}}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does Gulf Coast location affect HVAC?", "acceptedAnswer": {"@type": "Answer", "text": "Gulf salt air causes rapid corrosion and hurricane risk requires wind-rated equipment with maximum coastal protection."}}]}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coolit-hvac.com"}, {"@type": "ListItem", "position": 2, "name": "Florida", "item": "https://coolit-hvac.com/fl"}, {"@type": "ListItem", "position": 3, "name": "Pensacola", "item": "https://coolit-hvac.com/fl/pensacola"}]}'::jsonb,
 
   '/fl/escambia-county',
-  '[{\"slug\": \"/fl/pensacola-beach/hvac\", \"anchor_text\": \"Pensacola Beach HVAC\"}, {\"slug\": \"/fl/gulf-breeze/hvac\", \"anchor_text\": \"Gulf Breeze AC\"}, {\"slug\": \"/fl/navarre/hvac\", \"anchor_text\": \"Navarre HVAC\"}]'::jsonb,
-  '[{\"slug\": \"/services/ac-repair\", \"anchor_text\": \"AC Repair\"}, {\"slug\": \"/services/hurricane-hvac\", \"anchor_text\": \"Hurricane-Rated HVAC\"}, {\"slug\": \"/services/historic-hvac\", \"anchor_text\": \"Historic Home HVAC\"}]'::jsonb,
+  '[{"slug": "/fl/pensacola-beach/hvac", "anchor_text": "Pensacola Beach HVAC"}, {"slug": "/fl/gulf-breeze/hvac", "anchor_text": "Gulf Breeze AC"}, {"slug": "/fl/navarre/hvac", "anchor_text": "Navarre HVAC"}]'::jsonb,
+  '[{"slug": "/services/ac-repair", "anchor_text": "AC Repair"}, {"slug": "/services/hurricane-hvac", "anchor_text": "Hurricane-Rated HVAC"}, {"slug": "/services/historic-hvac", "anchor_text": "Historic Home HVAC"}]'::jsonb,
 
   2070, 31, 16, 91,
   'published', 1, 'claude', 'phase16-v1'

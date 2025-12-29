@@ -36,7 +36,7 @@ INSERT INTO city_research (
   43021, 'US Census Bureau ACS 2023',
   72458, 385000, 71.3,
   ARRAY['single-family', 'new-construction', 'lake-community', 'retirement'],
-  '{"pre-1990\": 15, \"1990s-2000s\": 30, \"2010s\": 35, \"2020s\": 20}'::jsonb,
+  '{"pre-1990": 15, "1990s-2000s": 30, "2010s": 35, "2020s": 20}'::jsonb,
   92, 52, 72, 3600, 102, 51.2, 'moderate',
   'Choice of Champions with unique rolling hills. National Training Center for triathlons. Chain of Lakes region. Rapid growth west of Orlando. Inland moderate hurricane risk.',
   ARRAY['South Lake Hospital', 'Lake County Public Schools', 'City of Clermont', 'National Training Center', 'Retail and hospitality', 'Theme park commuters'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of Clermont Utilities',
   275,
   'Florida Building Code 8th Edition (2023), Lake County requirements',
-  '{"hvac_replacement\": \"Permit required\", \"inspection\": \"Final inspection required\", \"new_construction\": \"Load calculation and energy compliance required"}'::jsonb,
+  '{"hvac_replacement": "Permit required", "inspection": "Final inspection required", "new_construction": "Load calculation and energy compliance required"}'::jsonb,
   'high',
   ARRAY['Air Necessities', 'Fenix Air Conditioning', 'Super Heat & Air', 'Arctic Air Solutions', 'Cool Breeze HVAC'],
-  '{"demographics\": \"US Census Bureau ACS 2023\", \"utilities\": \"Duke Energy Florida\", \"research_date\": \"2024-12-29"}'::jsonb
+  '{"demographics": "US Census Bureau ACS 2023", "utilities": "Duke Energy Florida", "research_date": "2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,18 +144,18 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{"avg_summer_high\": \"92°F\", \"avg_humidity\": \"72%\", \"cooling_degree_days\": \"3,600\", \"days_above_90\": \"102+\", \"hurricane_risk\": \"Moderate"}'::jsonb,
+  '{"avg_summer_high": "92°F", "avg_humidity": "72%", "cooling_degree_days": "3,600", "days_above_90": "102+", "hurricane_risk": "Moderate"}'::jsonb,
 
   'Ready for Champion-Level Comfort in Clermont?',
   'Contact us today for a consultation. From the hills to the lakes, we''ll deliver expert HVAC service with Duke Energy rebate assistance.',
 
-  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Clermont\", \"description\": \"Professional HVAC services for Clermont, FL specializing in hills and lake communities.\", \"url\": \"https://coolit-hvac.com/clermont-fl\", \"telephone\": \"+1-352-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Clermont\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"How do Clermont''s hills affect my HVAC system?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Clermont''s elevation changes affect load calculations and ductwork design requiring local expertise.\"}}]}'::jsonb,
-  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Clermont\", \"item\": \"https://coolit-hvac.com/fl/clermont\"}]}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "HVACBusiness", "name": "Cool It HVAC - Clermont", "description": "Professional HVAC services for Clermont, FL specializing in hills and lake communities.", "url": "https://coolit-hvac.com/clermont-fl", "telephone": "+1-352-555-COOL", "areaServed": {"@type": "City", "name": "Clermont", "addressRegion": "FL"}}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do Clermont''s hills affect my HVAC system?", "acceptedAnswer": {"@type": "Answer", "text": "Clermont''s elevation changes affect load calculations and ductwork design requiring local expertise."}}]}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coolit-hvac.com"}, {"@type": "ListItem", "position": 2, "name": "Florida", "item": "https://coolit-hvac.com/fl"}, {"@type": "ListItem", "position": 3, "name": "Clermont", "item": "https://coolit-hvac.com/fl/clermont"}]}'::jsonb,
 
   '/fl/lake-county',
-  '[{\"slug\": \"/fl/winter-garden/hvac\", \"anchor_text\": \"Winter Garden HVAC\"}, {\"slug\": \"/fl/apopka/hvac\", \"anchor_text\": \"Apopka AC\"}, {\"slug\": \"/fl/leesburg/hvac\", \"anchor_text\": \"Leesburg HVAC\"}]'::jsonb,
-  '[{\"slug\": \"/services/ac-repair\", \"anchor_text\": \"AC Repair\"}, {\"slug\": \"/services/lake-hvac\", \"anchor_text\": \"Lake Community HVAC\"}, {\"slug\": \"/services/new-construction\", \"anchor_text\": \"New Construction\"}]'::jsonb,
+  '[{"slug": "/fl/winter-garden/hvac", "anchor_text": "Winter Garden HVAC"}, {"slug": "/fl/apopka/hvac", "anchor_text": "Apopka AC"}, {"slug": "/fl/leesburg/hvac", "anchor_text": "Leesburg HVAC"}]'::jsonb,
+  '[{"slug": "/services/ac-repair", "anchor_text": "AC Repair"}, {"slug": "/services/lake-hvac", "anchor_text": "Lake Community HVAC"}, {"slug": "/services/new-construction", "anchor_text": "New Construction"}]'::jsonb,
 
   1950, 28, 16, 90,
   'published', 1, 'claude', 'phase12-v1'

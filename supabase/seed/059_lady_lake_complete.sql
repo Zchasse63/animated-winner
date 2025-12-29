@@ -36,7 +36,7 @@ INSERT INTO city_research (
   16706, 'US Census Bureau ACS 2023',
   58236, 285000, 82.1,
   ARRAY['single-family', 'retirement', 'manufactured-home', 'condo'],
-  '{"pre-1990\": 20, \"1990s-2000s\": 35, \"2010s\": 30, \"2020s\": 15}'::jsonb,
+  '{"pre-1990": 20, "1990s-2000s": 35, "2010s": 30, "2020s": 15}'::jsonb,
   92, 50, 71, 3650, 104, 51.8, 'moderate',
   'Gateway to The Villages retirement community. Spanish Springs Town Square. Active adult focus. Significant seasonal population. Inland moderate hurricane risk.',
   ARRAY['The Villages', 'Lake County Public Schools', 'Healthcare services', 'Retail and hospitality', 'Senior services', 'Town of Lady Lake'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'Town of Lady Lake Utilities',
   260,
   'Florida Building Code 8th Edition (2023), Lake County requirements',
-  '{"hvac_replacement\": \"Permit required\", \"inspection\": \"Final inspection required\", \"senior_housing\": \"Accessibility and efficiency focus"}'::jsonb,
+  '{"hvac_replacement": "Permit required", "inspection": "Final inspection required", "senior_housing": "Accessibility and efficiency focus"}'::jsonb,
   'very_high',
   ARRAY['Air Necessities', 'Super Heat & Air', 'Fenix Air Conditioning', 'Cool Breeze HVAC', 'Arctic Air Solutions'],
-  '{"demographics\": \"US Census Bureau ACS 2023\", \"utilities\": \"Duke Energy Florida\", \"research_date\": \"2024-12-29"}'::jsonb
+  '{"demographics": "US Census Bureau ACS 2023", "utilities": "Duke Energy Florida", "research_date": "2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -142,18 +142,18 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{"avg_summer_high\": \"92°F\", \"avg_humidity\": \"71%\", \"cooling_degree_days\": \"3,650\", \"days_above_90\": \"104+\", \"hurricane_risk\": \"Moderate"}'::jsonb,
+  '{"avg_summer_high": "92°F", "avg_humidity": "71%", "cooling_degree_days": "3,650", "days_above_90": "104+", "hurricane_risk": "Moderate"}'::jsonb,
 
   'Ready for Comfortable Retirement Living in Lady Lake?',
   'Contact us today for a consultation. We''ll design an efficient comfort solution perfect for active adult living with Duke Energy rebate assistance.',
 
-  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Lady Lake\", \"description\": \"Professional HVAC services for Lady Lake, FL specializing in 55+ and retirement communities.\", \"url\": \"https://coolit-hvac.com/lady-lake-fl\", \"telephone\": \"+1-352-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Lady Lake\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Do you specialize in The Villages and 55+ communities?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we work extensively with retirement communities and understand efficiency priorities and accessibility needs.\"}}]}'::jsonb,
-  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Lady Lake\", \"item\": \"https://coolit-hvac.com/fl/lady-lake\"}]}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "HVACBusiness", "name": "Cool It HVAC - Lady Lake", "description": "Professional HVAC services for Lady Lake, FL specializing in 55+ and retirement communities.", "url": "https://coolit-hvac.com/lady-lake-fl", "telephone": "+1-352-555-COOL", "areaServed": {"@type": "City", "name": "Lady Lake", "addressRegion": "FL"}}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do you specialize in The Villages and 55+ communities?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, we work extensively with retirement communities and understand efficiency priorities and accessibility needs."}}]}'::jsonb,
+  '{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coolit-hvac.com"}, {"@type": "ListItem", "position": 2, "name": "Florida", "item": "https://coolit-hvac.com/fl"}, {"@type": "ListItem", "position": 3, "name": "Lady Lake", "item": "https://coolit-hvac.com/fl/lady-lake"}]}'::jsonb,
 
   '/fl/lake-county',
-  '[{\"slug\": \"/fl/leesburg/hvac\", \"anchor_text\": \"Leesburg HVAC\"}, {\"slug\": \"/fl/clermont/hvac\", \"anchor_text\": \"Clermont AC\"}, {\"slug\": \"/fl/fruitland-park/hvac\", \"anchor_text\": \"Fruitland Park HVAC\"}]'::jsonb,
-  '[{\"slug\": \"/services/ac-repair\", \"anchor_text\": \"AC Repair\"}, {\"slug\": \"/services/senior-hvac\", \"anchor_text\": \"55+ Community HVAC\"}, {\"slug\": \"/services/seasonal-home\", \"anchor_text\": \"Seasonal Home Service\"}]'::jsonb,
+  '[{"slug": "/fl/leesburg/hvac", "anchor_text": "Leesburg HVAC"}, {"slug": "/fl/clermont/hvac", "anchor_text": "Clermont AC"}, {"slug": "/fl/fruitland-park/hvac", "anchor_text": "Fruitland Park HVAC"}]'::jsonb,
+  '[{"slug": "/services/ac-repair", "anchor_text": "AC Repair"}, {"slug": "/services/senior-hvac", "anchor_text": "55+ Community HVAC"}, {"slug": "/services/seasonal-home", "anchor_text": "Seasonal Home Service"}]'::jsonb,
 
   1920, 26, 14, 88,
   'published', 1, 'claude', 'phase12-v1'
