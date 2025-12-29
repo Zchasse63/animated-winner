@@ -36,7 +36,7 @@ INSERT INTO city_research (
   15000, 'US Census Bureau 2023',
   58742, 385000, 52.8,
   ARRAY['historic', 'condo', 'single-family', 'waterfront'],
-  '{\"pre-1900\": 5, \"1900s-1970s\": 25, \"1980s-2000s\": 40, \"2010s-2020s\": 30}'::jsonb,
+  '{"pre-1900\": 5, \"1900s-1970s\": 25, \"1980s-2000s\": 40, \"2010s-2020s\": 30}'::jsonb,
   90, 47, 73, 3350, 91, 52.8, 'high',
   'America''s oldest city founded 1565. Spanish colonial architecture. Major tourism destination. Historic preservation focus. Coastal hurricane risk. Significant seasonal population.',
   ARRAY['Tourism industry', 'Flagler College', 'St. Johns County government', 'Flagler Hospital', 'Historic attractions', 'Retail and hospitality'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of St. Augustine Utilities',
   175,
   'Florida Building Code 8th Edition (2023), St. Johns County coastal requirements, Historic district preservation standards',
-  '{\"hvac_replacement\": \"Permit required\", \"historic_district\": \"Strict preservation requirements for colonial district\", \"architectural_review\": \"Required for historic properties\", \"coastal_zones\": \"Wind-rated equipment required\", \"inspection\": \"Multiple inspections required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"historic_district\": \"Strict preservation requirements for colonial district\", \"architectural_review\": \"Required for historic properties\", \"coastal_zones\": \"Wind-rated equipment required\", \"inspection\": \"Multiple inspections required"}'::jsonb,
   'high',
   ('ARRAY[''Climate Control of St. Johns'', ''Watson''s Comfort Systems'', ''Air Docs'', ''Snyder Air'', ''Miller''s Central Air'']'),
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"90°F\", \"avg_winter_low\": \"47°F\", \"avg_humidity\": \"73%\", \"cooling_degree_days\": \"3,350\", \"days_above_90\": \"91+\", \"hurricane_risk\": \"High\"}'::jsonb,
+  '{"avg_summer_high\": \"90°F\", \"avg_winter_low\": \"47°F\", \"avg_humidity\": \"73%\", \"cooling_degree_days\": \"3,350\", \"days_above_90\": \"91+\", \"hurricane_risk\": \"High"}'::jsonb,
 
   'Ready for Historic Comfort in St. Augustine?',
   'Contact us today for a consultation. From 400-year-old colonial buildings to modern beach homes, we''ll deliver expert HVAC service preserving St. Augustine''s treasured character.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - St. Augustine\", \"description\": \"Professional HVAC services for St. Augustine, FL specializing in historic preservation and beach properties.\", \"url\": \"https://coolit-hvac.com/st-augustine-fl\", \"telephone\": \"+1-904-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"St. Augustine\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you work on historic district buildings?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we specialize in St. Augustine''s colonial properties and navigate preservation requirements.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"St. Augustine\", \"item\": \"https://coolit-hvac.com/fl/st-augustine\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - St. Augustine\", \"description\": \"Professional HVAC services for St. Augustine, FL specializing in historic preservation and beach properties.\", \"url\": \"https://coolit-hvac.com/st-augustine-fl\", \"telephone\": \"+1-904-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"St. Augustine\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you work on historic district buildings?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we specialize in St. Augustine''s colonial properties and navigate preservation requirements.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"St. Augustine\", \"item\": \"https://coolit-hvac.com/fl/st-augustine\"}]}'::jsonb,
 
   '/fl/st-johns-county',
   '[{\"slug\": \"/fl/jacksonville/hvac\", \"anchor_text\": \"Jacksonville HVAC\"}, {\"slug\": \"/fl/ponte-vedra-beach/hvac\", \"anchor_text\": \"Ponte Vedra Beach AC\"}, {\"slug\": \"/fl/jacksonville-beach/hvac\", \"anchor_text\": \"Jacksonville Beach HVAC\"}]'::jsonb,

@@ -36,7 +36,7 @@ INSERT INTO city_research (
   182760, 'US Census Bureau 2023',
   64182, 425000, 48.3,
   ARRAY['single-family', 'condo', 'waterfront', 'luxury'],
-  '{\"pre-1970\": 25, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 15}'::jsonb,
+  '{"pre-1970\": 25, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 15}'::jsonb,
   90, 66, 75, 4100, 86, 63.2, 'very_high',
   'Venice of America with 165 miles of canals. Major yachting center. Beach destination. International tourism. Cruise port. High coastal salt exposure. Hurricane zone.',
   ARRAY['Port Everglades', 'Fort Lauderdale-Hollywood International Airport', 'AutoNation', 'Citrix Systems', 'Spirit Airlines', 'Broward Health', 'Tourism industry', 'Marine industry', 'Banking'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of Fort Lauderdale Utilities',
   155,
   'Florida Building Code 8th Edition (2023), Broward County High Velocity Hurricane Zone amendments',
-  '{\"hvac_replacement\": \"Permit required\", \"hvhz\": \"High Velocity Hurricane Zone compliance\", \"coastal_protection\": \"Maximum salt air and wind protection required\", \"waterfront\": \"Enhanced tie-downs for canal properties\", \"inspection\": \"Multiple inspections required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"hvhz\": \"High Velocity Hurricane Zone compliance\", \"coastal_protection\": \"Maximum salt air and wind protection required\", \"waterfront\": \"Enhanced tie-downs for canal properties\", \"inspection\": \"Multiple inspections required"}'::jsonb,
   'very_high',
   ARRAY['Gator Air Conditioning', 'All Year Cooling', 'Air Ref Co Inc', 'One Hour Air Conditioning & Heating', 'Colair Cooling & Heating'],
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"90°F\", \"avg_humidity\": \"75%\", \"cooling_degree_days\": \"4,100\", \"days_above_90\": \"86+\", \"hurricane_risk\": \"Very High\"}'::jsonb,
+  '{"avg_summer_high\": \"90°F\", \"avg_humidity\": \"75%\", \"cooling_degree_days\": \"4,100\", \"days_above_90\": \"86+\", \"hurricane_risk\": \"Very High"}'::jsonb,
 
   'Ready for Waterfront Comfort in Fort Lauderdale?',
   'Contact us today for a consultation. From Las Olas canals to Fort Lauderdale Beach, we''ll deliver expert HVAC service engineered for South Florida''s Venice.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Fort Lauderdale\", \"description\": \"Professional HVAC services for Fort Lauderdale, FL specializing in canal and beach properties.\", \"url\": \"https://coolit-hvac.com/fort-lauderdale-fl\", \"telephone\": \"+1-954-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Fort Lauderdale\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Why do canal homes need special HVAC attention?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"165 miles of canals create constant waterfront humidity requiring enhanced dehumidification and moisture control.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Fort Lauderdale\", \"item\": \"https://coolit-hvac.com/fl/fort-lauderdale\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Fort Lauderdale\", \"description\": \"Professional HVAC services for Fort Lauderdale, FL specializing in canal and beach properties.\", \"url\": \"https://coolit-hvac.com/fort-lauderdale-fl\", \"telephone\": \"+1-954-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Fort Lauderdale\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Why do canal homes need special HVAC attention?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"165 miles of canals create constant waterfront humidity requiring enhanced dehumidification and moisture control.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Fort Lauderdale\", \"item\": \"https://coolit-hvac.com/fl/fort-lauderdale\"}]}'::jsonb,
 
   '/fl/broward-county',
   '[{\"slug\": \"/fl/hollywood/hvac\", \"anchor_text\": \"Hollywood HVAC\"}, {\"slug\": \"/fl/pompano-beach/hvac\", \"anchor_text\": \"Pompano Beach AC\"}, {\"slug\": \"/fl/coral-springs/hvac\", \"anchor_text\": \"Coral Springs HVAC\"}]'::jsonb,

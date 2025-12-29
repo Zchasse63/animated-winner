@@ -36,7 +36,7 @@ INSERT INTO city_research (
   117000, 'US Census Bureau 2023',
   62947, 395000, 46.8,
   ARRAY['single-family', 'condo', 'waterfront', 'luxury'],
-  '{\"pre-1970\": 20, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 20}'::jsonb,
+  '{"pre-1970\": 20, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 20}'::jsonb,
   90, 64, 74, 4050, 87, 62.7, 'very_high',
   'Palm Beach County seat. Business and cultural hub. Intracoastal waterfront. Gateway to Palm Beach. Significant seasonal population. Coastal hurricane zone. Salt air exposure.',
   ARRAY['Palm Beach County government', 'NextEra Energy', 'G4S', 'Office Depot', 'Health Care District', 'Norton Museum', 'Downtown businesses', 'Tourism industry'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of West Palm Beach Water',
   145,
   'Florida Building Code 8th Edition (2023), Palm Beach County coastal amendments',
-  '{\"hvac_replacement\": \"Permit required\", \"coastal_zones\": \"Wind-rated equipment for coastal areas\", \"inspection\": \"Final inspection required\", \"energy_code\": \"Energy compliance required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"coastal_zones\": \"Wind-rated equipment for coastal areas\", \"inspection\": \"Final inspection required\", \"energy_code\": \"Energy compliance required"}'::jsonb,
   'high',
   ARRAY['Gator Air Conditioning', 'One Hour Air Conditioning', 'All Year Cooling', 'Air Ref Co Inc', 'Colair Cooling'],
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"90°F\", \"avg_humidity\": \"74%\", \"cooling_degree_days\": \"4,050\", \"days_above_90\": \"87+\", \"hurricane_risk\": \"Very High\"}'::jsonb,
+  '{"avg_summer_high\": \"90°F\", \"avg_humidity\": \"74%\", \"cooling_degree_days\": \"4,050\", \"days_above_90\": \"87+\", \"hurricane_risk\": \"Very High"}'::jsonb,
 
   'Ready for Comfort in West Palm Beach?',
   'Contact us today for a consultation. From historic El Cid to downtown towers to Intracoastal waterfront, we''ll deliver expert HVAC service with FPL rebate assistance.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - West Palm Beach\", \"description\": \"Professional HVAC services for West Palm Beach, FL specializing in historic homes and high-rises.\", \"url\": \"https://coolit-hvac.com/west-palm-beach-fl\", \"telephone\": \"+1-561-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"West Palm Beach\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you work on historic El Cid homes?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we specialize in historic properties providing modern comfort while respecting architectural character.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"West Palm Beach\", \"item\": \"https://coolit-hvac.com/fl/west-palm-beach\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - West Palm Beach\", \"description\": \"Professional HVAC services for West Palm Beach, FL specializing in historic homes and high-rises.\", \"url\": \"https://coolit-hvac.com/west-palm-beach-fl\", \"telephone\": \"+1-561-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"West Palm Beach\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you work on historic El Cid homes?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we specialize in historic properties providing modern comfort while respecting architectural character.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"West Palm Beach\", \"item\": \"https://coolit-hvac.com/fl/west-palm-beach\"}]}'::jsonb,
 
   '/fl/palm-beach-county',
   '[{\"slug\": \"/fl/boca-raton/hvac\", \"anchor_text\": \"Boca Raton HVAC\"}, {\"slug\": \"/fl/delray-beach/hvac\", \"anchor_text\": \"Delray Beach AC\"}, {\"slug\": \"/fl/jupiter/hvac\", \"anchor_text\": \"Jupiter HVAC\"}]'::jsonb,

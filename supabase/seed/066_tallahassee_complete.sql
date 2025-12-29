@@ -36,7 +36,7 @@ INSERT INTO city_research (
   196000, 'US Census Bureau 2023',
   52657, 235000, 47.3,
   ARRAY['single-family', 'apartment', 'student-housing', 'historic'],
-  '{\"pre-1960\": 15, \"1960s-1990s\": 35, \"2000s-2010s\": 35, \"2020s\": 15}'::jsonb,
+  '{"pre-1960\": 15, \"1960s-1990s\": 35, \"2000s-2010s\": 35, \"2020s\": 15}'::jsonb,
   91, 41, 70, 2900, 92, 61.8, 'moderate',
   'Florida''s capital city. Major university town (FSU, FAMU). Government center. Canopy roads and historic districts. North Florida location has cooler winters than South Florida. Inland moderate hurricane risk.',
   ARRAY['State of Florida government', 'Florida State University', 'Florida A&M University', 'Tallahassee Memorial Healthcare', 'Capital Regional Medical Center', 'Leon County Schools', 'City of Tallahassee'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of Tallahassee Water',
   95,
   'Florida Building Code 8th Edition (2023), Leon County requirements',
-  '{\"hvac_replacement\": \"Permit required\", \"inspection\": \"Final inspection required\", \"energy_code\": \"Energy compliance required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"inspection\": \"Final inspection required\", \"energy_code\": \"Energy compliance required"}'::jsonb,
   'moderate',
   ARRAY['Discount Air & Heat', 'Keith Lawson AC', 'Parker Services', 'Miller''s Central Air', 'Air Dynamics'],
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"City of Tallahassee\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"City of Tallahassee\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"91°F\", \"avg_winter_low\": \"41°F\", \"avg_humidity\": \"70%\", \"cooling_degree_days\": \"2,900\", \"days_above_90\": \"92+\", \"hurricane_risk\": \"Moderate\"}'::jsonb,
+  '{"avg_summer_high\": \"91°F\", \"avg_winter_low\": \"41°F\", \"avg_humidity\": \"70%\", \"cooling_degree_days\": \"2,900\", \"days_above_90\": \"92+\", \"hurricane_risk\": \"Moderate"}'::jsonb,
 
   'Ready for Capital City Comfort in Tallahassee?',
   'Contact us today for a consultation. From FSU''s College Town to historic canopy roads to Southwood, we''ll deliver expert HVAC service with City rebate assistance.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Tallahassee\", \"description\": \"Professional HVAC services for Tallahassee, FL specializing in college town and capital city needs.\", \"url\": \"https://coolit-hvac.com/tallahassee-fl\", \"telephone\": \"+1-850-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Tallahassee\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Do I need heating in Tallahassee?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, Tallahassee experiences occasional freezing requiring heat pump systems with backup heat.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Tallahassee\", \"item\": \"https://coolit-hvac.com/fl/tallahassee\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Tallahassee\", \"description\": \"Professional HVAC services for Tallahassee, FL specializing in college town and capital city needs.\", \"url\": \"https://coolit-hvac.com/tallahassee-fl\", \"telephone\": \"+1-850-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Tallahassee\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Do I need heating in Tallahassee?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, Tallahassee experiences occasional freezing requiring heat pump systems with backup heat.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Tallahassee\", \"item\": \"https://coolit-hvac.com/fl/tallahassee\"}]}'::jsonb,
 
   '/fl/leon-county',
   '[{\"slug\": \"/fl/gainesville/hvac\", \"anchor_text\": \"Gainesville HVAC\"}, {\"slug\": \"/fl/pensacola/hvac\", \"anchor_text\": \"Pensacola AC\"}]'::jsonb,

@@ -36,7 +36,7 @@ INSERT INTO city_research (
   949611, 'US Census Bureau 2023',
   61346, 275000, 60.8,
   ARRAY['single-family', 'suburban', 'new-construction', 'historic'],
-  '{\"pre-1970\": 20, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 20}'::jsonb,
+  '{"pre-1970\": 20, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 20}'::jsonb,
   91, 44, 73, 3450, 95, 52.4, 'high',
   'Florida''s largest city by area. Banking and military hub. Major port city. St. Johns River waterfront. Rapid suburban growth. Coastal hurricane risk.',
   ARRAY['Naval Station Mayport', 'Naval Air Station Jacksonville', 'Mayo Clinic', 'Baptist Health', 'Bank of America', 'CSX Corporation', 'Fidelity Investments', 'Johnson & Johnson', 'Amazon fulfillment'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'JEA (Water)',
   185,
   'Florida Building Code 8th Edition (2023), Duval County coastal amendments',
-  '{\"hvac_replacement\": \"Permit required\", \"coastal_zones\": \"Wind-rated equipment for coastal areas\", \"inspection\": \"Final inspection required\", \"new_construction\": \"Energy code compliance required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"coastal_zones\": \"Wind-rated equipment for coastal areas\", \"inspection\": \"Final inspection required\", \"new_construction\": \"Energy code compliance required"}'::jsonb,
   'moderate',
   ARRAY['Cool Connections', 'Miller''s Central Air', 'Buehler Air Conditioning', 'Snyder AC & Plumbing', 'Air Docs Heating & Air'],
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"JEA\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"JEA\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"91°F\", \"avg_humidity\": \"73%\", \"cooling_degree_days\": \"3,450\", \"days_above_90\": \"95+\", \"hurricane_risk\": \"High\"}'::jsonb,
+  '{"avg_summer_high\": \"91°F\", \"avg_humidity\": \"73%\", \"cooling_degree_days\": \"3,450\", \"days_above_90\": \"95+\", \"hurricane_risk\": \"High"}'::jsonb,
 
   'Ready for Comfort Across Jacksonville?',
   'Contact us today for a consultation. From historic downtown to coastal beaches to suburban growth areas, we''ll deliver expert HVAC service with JEA rebate assistance.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Jacksonville\", \"description\": \"Professional HVAC services for Jacksonville, FL covering all 840+ square miles.\", \"url\": \"https://coolit-hvac.com/jacksonville-fl\", \"telephone\": \"+1-904-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Jacksonville\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Do you serve all of Jacksonville?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we provide comprehensive service throughout all 840+ square miles of Jacksonville.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Jacksonville\", \"item\": \"https://coolit-hvac.com/fl/jacksonville\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Jacksonville\", \"description\": \"Professional HVAC services for Jacksonville, FL covering all 840+ square miles.\", \"url\": \"https://coolit-hvac.com/jacksonville-fl\", \"telephone\": \"+1-904-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Jacksonville\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Do you serve all of Jacksonville?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we provide comprehensive service throughout all 840+ square miles of Jacksonville.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Jacksonville\", \"item\": \"https://coolit-hvac.com/fl/jacksonville\"}]}'::jsonb,
 
   '/fl/duval-county',
   '[{\"slug\": \"/fl/jacksonville-beach/hvac\", \"anchor_text\": \"Jacksonville Beach HVAC\"}, {\"slug\": \"/fl/st-augustine/hvac\", \"anchor_text\": \"St. Augustine AC\"}, {\"slug\": \"/fl/orange-park/hvac\", \"anchor_text\": \"Orange Park HVAC\"}]'::jsonb,

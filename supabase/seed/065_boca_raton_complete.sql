@@ -36,7 +36,7 @@ INSERT INTO city_research (
   99000, 'US Census Bureau 2023',
   87037, 545000, 68.7,
   ARRAY['single-family', 'condo', 'luxury', 'golf-community'],
-  '{\"pre-1970\": 15, \"1970s-1990s\": 35, \"2000s-2010s\": 35, \"2020s\": 15}'::jsonb,
+  '{"pre-1970\": 15, \"1970s-1990s\": 35, \"2000s-2010s\": 35, \"2020s\": 15}'::jsonb,
   90, 64, 74, 4000, 85, 61.2, 'very_high',
   'Upscale coastal city. Major corporate presence. Florida Atlantic University. Beautiful beaches and parks. Luxury lifestyle focus. Coastal hurricane zone. Premium market.',
   ARRAY['Office Depot', 'ADT Corporation', 'Florida Atlantic University', 'Boca Raton Regional Hospital', 'Tech companies', 'Corporate headquarters', 'Retail and hospitality'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of Boca Raton Water',
   135,
   'Florida Building Code 8th Edition (2023), Palm Beach County coastal amendments, Boca architectural standards',
-  '{\"hvac_replacement\": \"Permit required\", \"architectural_review\": \"Many communities require design approval\", \"coastal_zones\": \"Wind-rated equipment required\", \"inspection\": \"Multiple inspections required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"architectural_review\": \"Many communities require design approval\", \"coastal_zones\": \"Wind-rated equipment required\", \"inspection\": \"Multiple inspections required"}'::jsonb,
   'very_high',
   ARRAY['Gator Air Conditioning', 'One Hour Air Conditioning', 'All Year Cooling', 'Air Ref Co Inc', 'Colair Cooling'],
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"90°F\", \"avg_humidity\": \"74%\", \"cooling_degree_days\": \"4,000\", \"days_above_90\": \"85+\", \"hurricane_risk\": \"Very High\"}'::jsonb,
+  '{"avg_summer_high\": \"90°F\", \"avg_humidity\": \"74%\", \"cooling_degree_days\": \"4,000\", \"days_above_90\": \"85+\", \"hurricane_risk\": \"Very High"}'::jsonb,
 
   'Ready for Premium Comfort in Boca Raton?',
   'Contact us today for a consultation. From Royal Palm to Boca West to Mizner Park, we''ll deliver luxury HVAC solutions worthy of Boca''s premium lifestyle.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Boca Raton\", \"description\": \"Premium HVAC services for Boca Raton, FL specializing in luxury and golf communities.\", \"url\": \"https://coolit-hvac.com/boca-raton-fl\", \"telephone\": \"+1-561-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Boca Raton\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you meet Boca Raton community standards?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we ensure all installations meet Boca architectural review requirements for equipment placement and appearance.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Boca Raton\", \"item\": \"https://coolit-hvac.com/fl/boca-raton\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Boca Raton\", \"description\": \"Premium HVAC services for Boca Raton, FL specializing in luxury and golf communities.\", \"url\": \"https://coolit-hvac.com/boca-raton-fl\", \"telephone\": \"+1-561-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Boca Raton\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you meet Boca Raton community standards?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we ensure all installations meet Boca architectural review requirements for equipment placement and appearance.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Boca Raton\", \"item\": \"https://coolit-hvac.com/fl/boca-raton\"}]}'::jsonb,
 
   '/fl/palm-beach-county',
   '[{\"slug\": \"/fl/delray-beach/hvac\", \"anchor_text\": \"Delray Beach HVAC\"}, {\"slug\": \"/fl/west-palm-beach/hvac\", \"anchor_text\": \"West Palm Beach AC\"}, {\"slug\": \"/fl/boynton-beach/hvac\", \"anchor_text\": \"Boynton Beach HVAC\"}]'::jsonb,

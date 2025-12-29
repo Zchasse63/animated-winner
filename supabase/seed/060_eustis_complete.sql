@@ -36,7 +36,7 @@ INSERT INTO city_research (
   22191, 'US Census Bureau ACS 2023',
   54128, 245000, 68.7,
   ARRAY['single-family', 'historic', 'lake-community', 'manufactured-home'],
-  '{\"pre-1970\": 25, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 15}'::jsonb,
+  '{"pre-1970\": 25, \"1970s-1990s\": 30, \"2000s-2010s\": 30, \"2020s\": 15}'::jsonb,
   92, 50, 71, 3620, 103, 52.3, 'moderate',
   'Historic "City of Progress" on Lake Eustis. Charming downtown. GeorgeFest draws thousands. Mix of historic and new development. Inland moderate hurricane risk.',
   ARRAY['Florida Hospital Waterman', 'Lake County Public Schools', 'City of Eustis', 'Downtown businesses', 'Healthcare', 'Retail services'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'City of Eustis Utilities',
   255,
   'Florida Building Code 8th Edition (2023), Lake County requirements',
-  '{\"hvac_replacement\": \"Permit required\", \"historic_district\": \"Historic preservation considerations for downtown properties\", \"inspection\": \"Final inspection required\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"historic_district\": \"Historic preservation considerations for downtown properties\", \"inspection\": \"Final inspection required"}'::jsonb,
   'moderate',
   ARRAY['Air Necessities', 'Super Heat & Air', 'Fenix Air Conditioning', 'Cool Breeze HVAC', 'Arctic Air Solutions'],
-  '{\"demographics\": \"US Census Bureau ACS 2023\", \"utilities\": \"Duke Energy Florida\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau ACS 2023\", \"utilities\": \"Duke Energy Florida\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -143,14 +143,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"92°F\", \"avg_humidity\": \"71%\", \"cooling_degree_days\": \"3,620\", \"days_above_90\": \"103+\", \"hurricane_risk\": \"Moderate\"}'::jsonb,
+  '{"avg_summer_high\": \"92°F\", \"avg_humidity\": \"71%\", \"cooling_degree_days\": \"3,620\", \"days_above_90\": \"103+\", \"hurricane_risk\": \"Moderate"}'::jsonb,
 
   'Ready for Comfort in Historic Eustis?',
   'Contact us today for a consultation. From historic downtown to Lake Eustis waterfront, we''ll deliver expert HVAC service with Duke Energy rebate assistance.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Eustis\", \"description\": \"Professional HVAC services for Eustis, FL specializing in historic homes and lake communities.\", \"url\": \"https://coolit-hvac.com/eustis-fl\", \"telephone\": \"+1-352-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Eustis\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you work on historic downtown homes?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we specialize in historic properties providing modern comfort while respecting historic character.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Eustis\", \"item\": \"https://coolit-hvac.com/fl/eustis\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Eustis\", \"description\": \"Professional HVAC services for Eustis, FL specializing in historic homes and lake communities.\", \"url\": \"https://coolit-hvac.com/eustis-fl\", \"telephone\": \"+1-352-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Eustis\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Can you work on historic downtown homes?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yes, we specialize in historic properties providing modern comfort while respecting historic character.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Eustis\", \"item\": \"https://coolit-hvac.com/fl/eustis\"}]}'::jsonb,
 
   '/fl/lake-county',
   '[{\"slug\": \"/fl/mount-dora/hvac\", \"anchor_text\": \"Mount Dora HVAC\"}, {\"slug\": \"/fl/tavares/hvac\", \"anchor_text\": \"Tavares AC\"}, {\"slug\": \"/fl/leesburg/hvac\", \"anchor_text\": \"Leesburg HVAC\"}]'::jsonb,

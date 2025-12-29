@@ -36,7 +36,7 @@ INSERT INTO city_research (
   442241, 'US Census Bureau 2023',
   44581, 485000, 41.2,
   ARRAY['condo', 'single-family', 'luxury', 'high-rise'],
-  '{\"pre-1960\": 15, \"1960s-1990s\": 30, \"2000s-2010s\": 35, \"2020s\": 20}'::jsonb,
+  '{"pre-1960\": 15, \"1960s-1990s\": 30, \"2000s-2010s\": 35, \"2020s\": 20}'::jsonb,
   90, 68, 76, 4200, 88, 61.9, 'very_high',
   'Gateway to the Americas. International business hub. Tropical climate with year-round cooling needs. Coastal hurricane zone. Extreme salt air exposure. Cultural and financial center.',
   ARRAY['Port of Miami', 'Miami International Airport', 'University of Miami', 'Baptist Health South Florida', 'Jackson Health System', 'Carnival Cruise Line', 'American Airlines', 'Major banking', 'International corporations'],
@@ -55,10 +55,10 @@ INSERT INTO city_research (
   'Miami-Dade Water and Sewer',
   165,
   'Florida Building Code 8th Edition (2023), Miami-Dade High Velocity Hurricane Zone requirements',
-  '{\"hvac_replacement\": \"Permit required\", \"hvhz\": \"High Velocity Hurricane Zone compliance required\", \"coastal_protection\": \"Maximum wind rating and salt air protection\", \"inspection\": \"Multiple inspections required\", \"energy_code\": \"Strict energy efficiency requirements\"}'::jsonb,
+  '{"hvac_replacement\": \"Permit required\", \"hvhz\": \"High Velocity Hurricane Zone compliance required\", \"coastal_protection\": \"Maximum wind rating and salt air protection\", \"inspection\": \"Multiple inspections required\", \"energy_code\": \"Strict energy efficiency requirements"}'::jsonb,
   'very_high',
   ARRAY['Air On Demand', 'All Year Cooling', 'RJ Kuhn', 'Air-Ref Co Inc', 'Air America Cooling & Heating'],
-  '{\"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29\"}'::jsonb
+  '{"demographics\": \"US Census Bureau 2023\", \"utilities\": \"FPL\", \"research_date\": \"2024-12-29"}'::jsonb
 )
 ON CONFLICT (city_id) DO UPDATE SET
   population = EXCLUDED.population, researched_at = NOW(), updated_at = NOW();
@@ -144,14 +144,14 @@ INSERT INTO city_seo_content (
     ]
   }'::jsonb,
 
-  '{\"avg_summer_high\": \"90°F\", \"avg_humidity\": \"76%\", \"cooling_degree_days\": \"4,200\", \"days_above_90\": \"88+\", \"hurricane_risk\": \"Very High\"}'::jsonb,
+  '{"avg_summer_high\": \"90°F\", \"avg_humidity\": \"76%\", \"cooling_degree_days\": \"4,200\", \"days_above_90\": \"88+\", \"hurricane_risk\": \"Very High"}'::jsonb,
 
   'Ready for Tropical Comfort in Miami?',
   'Contact us today for a consultation. From Brickell high-rises to Coconut Grove estates, we''ll deliver expert HVAC service engineered for Miami''s demanding climate.',
 
-  '{\"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Miami\", \"description\": \"Professional HVAC services for Miami, FL specializing in tropical climate and high-rise systems.\", \"url\": \"https://coolit-hvac.com/miami-fl\", \"telephone\": \"+1-305-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Miami\", \"addressRegion\": \"FL\"}}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Why do Miami AC systems need more maintenance?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Miami''s year-round tropical heat, high humidity, and coastal salt air create the most demanding HVAC environment in Florida.\"}}]}'::jsonb,
-  '{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Miami\", \"item\": \"https://coolit-hvac.com/fl/miami\"}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"HVACBusiness\", \"name\": \"Cool It HVAC - Miami\", \"description\": \"Professional HVAC services for Miami, FL specializing in tropical climate and high-rise systems.\", \"url\": \"https://coolit-hvac.com/miami-fl\", \"telephone\": \"+1-305-555-COOL\", \"areaServed\": {\"@type\": \"City\", \"name\": \"Miami\", \"addressRegion\": \"FL\"}}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Why do Miami AC systems need more maintenance?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Miami''s year-round tropical heat, high humidity, and coastal salt air create the most demanding HVAC environment in Florida.\"}}]}'::jsonb,
+  '{"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://coolit-hvac.com\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Florida\", \"item\": \"https://coolit-hvac.com/fl\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Miami\", \"item\": \"https://coolit-hvac.com/fl/miami\"}]}'::jsonb,
 
   '/fl/miami-dade-county',
   '[{\"slug\": \"/fl/miami-beach/hvac\", \"anchor_text\": \"Miami Beach HVAC\"}, {\"slug\": \"/fl/coral-gables/hvac\", \"anchor_text\": \"Coral Gables AC\"}, {\"slug\": \"/fl/hialeah/hvac\", \"anchor_text\": \"Hialeah HVAC\"}]'::jsonb,
