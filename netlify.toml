@@ -1,0 +1,48 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Environment variables to configure in Netlify Dashboard:
+# ─────────────────────────────────────────────────────────
+# Required (Supabase 2025-2026 API Key Format):
+#   PUBLIC_SUPABASE_URL              - Your Supabase project URL
+#   PUBLIC_SUPABASE_PUBLISHABLE_KEY  - sb_publishable_... (client-safe with RLS)
+#   SUPABASE_SECRET_KEY              - sb_secret_... (server-only, bypasses RLS)
+#   PUBLIC_SITE_URL                  - Your Netlify domain (e.g., https://mysite.netlify.app)
+#   PUBLIC_COMPANY_NAME
+#   PUBLIC_DEFAULT_PHONE
+#
+# Optional (configure as needed):
+#   RINGBA_HVAC_CAMPAIGN_ID
+#   RINGBA_PLUMBING_CAMPAIGN_ID
+#   RINGBA_ROOFING_CAMPAIGN_ID
+#   SERVICE_DIRECT_API_KEY
+#   SMARTY_AUTH_ID
+#   SMARTY_AUTH_TOKEN
+#   RENTCAST_API_KEY
+#   SHOVELS_API_KEY
+#   CENSUS_API_KEY
+#   RESEND_API_KEY
+#   GEMINI_API_KEY
+#   TRUSTEDFORM_ACCOUNT_ID
+#   SLACK_WEBHOOK_URL
+
+[functions]
+  directory = ".netlify/functions"
+  node_bundler = "esbuild"
+
+# Headers for security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
