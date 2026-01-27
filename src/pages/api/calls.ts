@@ -1,18 +1,19 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../lib/supabase';
 
-// Ringba webhook endpoint for call tracking
+// TrackDrive webhook endpoint for call tracking
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
 
-    // Validate Ringba webhook signature if needed
-    // const signature = request.headers.get('x-ringba-signature');
+    // TODO: Validate TrackDrive webhook signature when API key is configured
+    // const signature = request.headers.get('x-trackdrive-signature');
 
-    // Extract call data from Ringba payload
+    // Extract call data from TrackDrive payload
+    // Note: Field names may need adjustment based on TrackDrive's actual webhook format
     const callData = {
       caller_id: body.caller_id || body.callerNumber || null,
-      ringba_call_id: body.call_id || body.callId || null,
+      trackdrive_call_id: body.call_id || body.callId || null,
       campaign_id: body.campaign_id || body.campaignId || null,
       publisher_id: body.publisher_id || body.publisherId || null,
       target_id: body.target_id || body.targetId || null,

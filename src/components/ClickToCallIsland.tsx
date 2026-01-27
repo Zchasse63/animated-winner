@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { formatPhoneDisplay, formatPhoneTel, trackCallClick, getRingbaNumber } from '../lib/ringba';
+import { formatPhoneDisplay, formatPhoneTel, trackCallClick } from '../lib/phone';
 
 interface ClickToCallIslandProps {
   defaultPhone?: string;
@@ -37,41 +37,10 @@ export function ClickToCallIsland({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Wait for Ringba to potentially swap the number
-    const checkRingba = () => {
-      const ringbaNumber = getRingbaNumber();
-      if (ringbaNumber) {
-        setPhone(formatPhoneDisplay(ringbaNumber));
-      }
-      setIsLoading(false);
-    };
-
-    // Check immediately
-    checkRingba();
-
-    // Also check after a short delay (Ringba may load async)
-    const timeout = setTimeout(checkRingba, 1500);
-
-    // Listen for Ringba number swap events
-    const observer = new MutationObserver(() => {
-      const ringbaNumber = getRingbaNumber();
-      if (ringbaNumber) {
-        setPhone(formatPhoneDisplay(ringbaNumber));
-      }
-    });
-
-    // Observe body for Ringba changes
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-    });
-
-    return () => {
-      clearTimeout(timeout);
-      observer.disconnect();
-    };
-  }, []);
+    // Initialize with formatted default phone
+    setPhone(formatPhoneDisplay(defaultPhone));
+    setIsLoading(false);
+  }, [defaultPhone]);
 
   const handleClick = () => {
     trackCallClick(phone, trackingSource);

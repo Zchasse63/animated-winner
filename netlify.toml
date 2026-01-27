@@ -16,9 +16,7 @@
 #   PUBLIC_DEFAULT_PHONE
 #
 # Optional (configure as needed):
-#   RINGBA_HVAC_CAMPAIGN_ID
-#   RINGBA_PLUMBING_CAMPAIGN_ID
-#   RINGBA_ROOFING_CAMPAIGN_ID
+#   TRACKDRIVE_API_KEY               - TrackDrive call tracking
 #   SERVICE_DIRECT_API_KEY
 #   SMARTY_AUTH_ID
 #   SMARTY_AUTH_TOKEN
@@ -28,7 +26,6 @@
 #   RESEND_API_KEY
 #   GEMINI_API_KEY
 #   TRUSTEDFORM_ACCOUNT_ID
-#   SLACK_WEBHOOK_URL
 
 [functions]
   directory = ".netlify/functions"

@@ -6,7 +6,7 @@ const POST = async ({ request }) => {
     const body = await request.json();
     const callData = {
       caller_id: body.caller_id || body.callerNumber || null,
-      ringba_call_id: body.call_id || body.callId || null,
+      trackdrive_call_id: body.call_id || body.callId || null,
       campaign_id: body.campaign_id || body.campaignId || null,
       publisher_id: body.publisher_id || body.publisherId || null,
       target_id: body.target_id || body.targetId || null,

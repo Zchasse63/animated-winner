@@ -1,28 +1,4 @@
-// Ringba call tracking utilities
-
-export interface RingbaConfig {
-  campaignKey: string;
-  tags?: Record<string, string>;
-}
-
-// Get the Ringba tracking number from the page (injected by Ringba script)
-export function getRingbaNumber(): string | null {
-  if (typeof window === 'undefined') return null;
-
-  // Ringba dynamically replaces numbers with class 'ringba-phone-number'
-  const phoneElement = document.querySelector('.ringba-phone-number');
-  if (phoneElement) {
-    return phoneElement.textContent || null;
-  }
-
-  // Fallback: check for Ringba's global object
-  const ringba = (window as any).__rb;
-  if (ringba?.getNumber) {
-    return ringba.getNumber();
-  }
-
-  return null;
-}
+// Phone utilities for call tracking
 
 // Format phone number for display
 export function formatPhoneDisplay(phone: string): string {
@@ -70,7 +46,7 @@ export function trackCallClick(phone: string, source: string): void {
   }
 }
 
-// Default phone numbers by vertical (fallbacks before Ringba loads)
+// Default phone numbers by vertical (fallbacks)
 export const defaultPhones: Record<string, string> = {
   hvac: '(813) 555-1234',
   plumbing: '(813) 555-2345',
@@ -78,18 +54,10 @@ export const defaultPhones: Record<string, string> = {
   default: '(813) 555-0000',
 };
 
-// Get appropriate phone number
+// Get appropriate phone number for a vertical
 export function getPhoneNumber(vertical?: string): string {
-  // Try Ringba first
-  const ringbaNumber = getRingbaNumber();
-  if (ringbaNumber) {
-    return formatPhoneDisplay(ringbaNumber);
-  }
-
-  // Fallback to default
   if (vertical && defaultPhones[vertical]) {
     return defaultPhones[vertical];
   }
-
   return defaultPhones.default;
 }

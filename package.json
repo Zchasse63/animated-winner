@@ -12,8 +12,7 @@
     "seed:florida": "npx tsx scripts/seed-florida.ts",
     "seed:pages": "npx tsx scripts/seed-pages.ts",
     "generate:sitemap": "npx tsx scripts/generate-sitemap.ts",
-    "test:sd": "npx tsx scripts/test-service-direct.ts",
-    "test:ringba": "npx tsx scripts/test-ringba-webhook.ts"
+    "test:sd": "npx tsx scripts/test-service-direct.ts"
   },
   "repository": {
     "type": "git",
