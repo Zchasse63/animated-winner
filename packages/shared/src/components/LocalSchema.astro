@@ -41,7 +41,7 @@ const localBusinessSchema = {
   "@type": serviceTypes[vertical]?.[0] || "HomeAndConstructionBusiness",
   "name": `${businessName} - ${city}`,
   "description": `Professional ${vertical.toUpperCase()} services in ${city}, ${stateAbbr}. Licensed, insured, and available 24/7.`,
-  "url": `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${vertical}/`,
+  "url": service ? `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${service}/` : `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/`,
   "telephone": formattedPhone,
   "address": {
     "@type": "PostalAddress",
@@ -77,12 +77,11 @@ const localBusinessSchema = {
   "priceRange": "$$"
 };
 
-// Generate BreadcrumbList schema
+// Generate BreadcrumbList schema - 3 levels without vertical
 const breadcrumbItems = [
   { name: "Home", url: siteUrl },
   { name: state, url: `${siteUrl}/${stateAbbr.toLowerCase()}/` },
-  { name: city, url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/` },
-  { name: vertical.toUpperCase(), url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${vertical}/` }
+  { name: city, url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/` }
 ];
 
 if (service) {
@@ -100,7 +99,7 @@ if (service) {
   };
   breadcrumbItems.push({
     name: serviceNames[service] || service,
-    url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${vertical}/${service}/`
+    url: `${siteUrl}/${stateAbbr.toLowerCase()}/${city.toLowerCase().replace(/\s+/g, '-')}/${service}/`
   });
 }
 

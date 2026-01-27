@@ -3,11 +3,11 @@ interface Props {
   state: string;
   stateAbbr: string;
   cities?: string[];
-  vertical?: 'hvac' | 'plumbing' | 'roofing';
+  serviceSlug: string;
   className?: string;
 }
 
-const { state, stateAbbr, cities, vertical = 'hvac', className = '' } = Astro.props;
+const { state, stateAbbr, cities, serviceSlug, className = '' } = Astro.props;
 
 // Default cities by state
 const defaultCities: Record<string, string[]> = {
@@ -35,7 +35,7 @@ const displayCities = cities || defaultCities[stateAbbr] || [];
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {displayCities.map((city) => {
           const citySlug = city.toLowerCase().replace(/\s+/g, '-');
-          const href = `/${stateAbbr.toLowerCase()}/${citySlug}/${vertical}/`;
+          const href = `/${stateAbbr.toLowerCase()}/${citySlug}/${serviceSlug}`;
           return (
             <a
               href={href}
