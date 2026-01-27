@@ -1,0 +1,91 @@
+---
+import BaseLayout from '@shared/layouts/BaseLayout.astro';
+import Header from '@shared/components/Header.astro';
+import Footer from '@shared/components/Footer.astro';
+import { getEnabledCities } from '@leadgen/shared';
+import { brand } from '@/config/brand';
+import { vertical, services } from '@/config/vertical';
+
+const title = `${brand.name} - ${brand.tagline}`;
+const description = `Find top-rated HVAC professionals in your area. Get free quotes for AC repair, heating repair, installation, and more. Licensed, insured, and available 24/7.`;
+
+const cities = getEnabledCities();
+
+// Get default service for links (AC repair as primary)
+const defaultService = services.find(s => s.slug === 'ac-repair') || services[0];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header phone={brand.phone} logoText={brand.name} />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-navy to-navy-light text-white py-20 md:py-32">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h1 class="text-h1-mobile md:text-h1 mb-6">
+          {brand.tagline}
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Connect with licensed, insured HVAC professionals in your area. Get free quotes for all your heating and cooling needs.
+        </p>
+        <a href={`#service-areas`} class="btn-cta text-lg py-4 px-8 inline-block">
+          Find Your Local HVAC Pro
+        </a>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-section md:py-section bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-h2 text-center mb-12">Our HVAC Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {services.map(service => (
+            <div class="bg-white p-6 rounded-card shadow-card hover:shadow-card-hover transition-shadow">
+              <div class="text-4xl mb-3">{service.icon}</div>
+              <h3 class="text-lg font-semibold mb-2">{service.name}</h3>
+              <p class="text-sm text-gray-600">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Areas -->
+    <section class="py-section md:py-section" id="service-areas">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-h2 text-center mb-12">Service Areas</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {cities.slice(0, 32).map(city => (
+            <a
+              href={`/${city.stateSlug}/${city.slug}/${defaultService.slug}`}
+              class="block p-4 bg-white rounded-lg shadow hover:shadow-card transition-shadow text-center"
+            >
+              <div class="font-semibold text-navy">{city.name}</div>
+              <div class="text-sm text-gray-600">{city.stateName}</div>
+            </a>
+          ))}
+        </div>
+        {cities.length > 32 && (
+          <p class="text-center mt-8 text-gray-600">
+            And {cities.length - 32} more cities across the Southeast
+          </p>
+        )}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-teal text-white py-16">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-h2 mb-6">Ready to Get Started?</h2>
+        <p class="text-xl mb-8">Call now or request a free quote online</p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+          <a href={`tel:${brand.phoneRaw}`} class="btn-cta text-lg py-4 px-8 tracking-phone">
+            Call {brand.phone}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer phone={brand.phone} />
+</BaseLayout>

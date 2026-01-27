@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@shared/layouts/BaseLayout.astro';
+import Header from '@shared/components/Header.astro';
+import Footer from '@shared/components/Footer.astro';
+import Hero from '@shared/components/Hero.astro';
+import TrustBadges from '@shared/components/TrustBadges.astro';
+import HowItWorks from '@shared/components/HowItWorks.astro';
+import WhyChooseUs from '@shared/components/WhyChooseUs.astro';
+import FAQ from '@shared/components/FAQ.astro';
+import ServiceAreas from '@shared/components/ServiceAreas.astro';
+import FinalCTA from '@shared/components/FinalCTA.astro';
+import LocalSchema from '@shared/components/LocalSchema.astro';
+import { LeadForm } from '@shared/components/LeadForm';
+import { getState, getCity, getCitiesByState, isValidState, isValidCity, getEnabledCities } from '@leadgen/shared';
+import { vertical, services, getService, isValidService } from '@/config/vertical';
+import { brand } from '@/config/brand';
+import type { GetStaticPaths } from 'astro';
+
+export const prerender = true;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: { params: { state: string; city: string; service: string } }[] = [];
+
+  for (const city of getEnabledCities()) {
+    for (const service of services) {
+      paths.push({
+        params: {
+          state: city.stateSlug,
+          city: city.slug,
+          service: service.slug,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { state: stateSlug, city: citySlug, service: serviceSlug } = Astro.params;
+
+// Validate params
+if (!isValidState(stateSlug!) || !isValidCity(citySlug!, stateSlug!)) {
+  return Astro.redirect('/404');
+}
+
+if (!isValidService(serviceSlug!)) {
+  return Astro.redirect('/404');
+}
+
+const stateData = getState(stateSlug!)!;
+const cityData = getCity(citySlug!, stateSlug!)!;
+const serviceData = getService(serviceSlug!)!;
+
+// Page content
+const title = `${serviceData.name} in ${cityData.name}, ${stateData.abbreviation} | ${brand.name}`;
+const description = `Need ${serviceData.name.toLowerCase()} in ${cityData.name}? Get free quotes from top-rated local HVAC pros. Fast response, no obligation!`;
+
+// Nearby cities for service areas
+const nearbyCities = getCitiesByState(stateSlug!).filter(c => c.slug !== citySlug).slice(0, 8);
+
+// FAQ items specific to service
+const faqItems = [
+  {
+    question: `How much does ${serviceData.name.toLowerCase()} cost in ${cityData.name}?`,
+    answer: `${serviceData.name} costs vary based on the specific issue and scope of work. Most ${cityData.name} homeowners pay between $150-$500 for standard repairs. Get free quotes from local pros to compare prices.`,
+  },
+  {
+    question: `How quickly can I get ${serviceData.name.toLowerCase()}?`,
+    answer: `Many HVAC pros in ${cityData.name} offer same-day or next-day service for urgent needs. For emergencies, 24/7 service is often available.`,
+  },
+  {
+    question: `Are your HVAC contractors licensed?`,
+    answer: `Yes! We only connect you with licensed, insured HVAC contractors in ${cityData.name}, ${stateData.abbreviation}. All pros are verified and background-checked.`,
+  },
+  {
+    question: `Is the quote really free?`,
+    answer: `Absolutely! There's no cost or obligation to get quotes. Compare prices from multiple ${cityData.name} HVAC pros and choose the best one for you.`,
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header phone={brand.phone} logoText={brand.name} />
+
+  <main>
+    <Hero
+      city={cityData.name}
+      state={stateData.name}
+      stateAbbr={stateData.abbreviation}
+      vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'}
+      service={serviceSlug}
+      phone={brand.phone}
+    >
+      <LeadForm
+        client:load
+        vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'}
+        city={cityData.name}
+        state={stateData.abbreviation}
+        phone={brand.phone}
+        companyName={brand.name}
+      />
+    </Hero>
+
+    <TrustBadges />
+
+    <HowItWorks />
+
+    <WhyChooseUs vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'} />
+
+    <FAQ
+      faqs={faqItems}
+      city={cityData.name}
+      vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'}
+    />
+
+    <ServiceAreas
+      state={stateData.name}
+      stateAbbr={stateData.abbreviation}
+      cities={nearbyCities.map(c => c.name)}
+      vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'}
+    />
+
+    <FinalCTA
+      phone={brand.phone}
+      headline={`Get ${serviceData.name} in ${cityData.name} Today`}
+      subheadline="Free quotes from licensed, insured professionals. No obligation."
+    />
+  </main>
+
+  <Footer phone={brand.phone} vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'} companyName={brand.name} />
+
+  <LocalSchema
+    businessName={`${cityData.name} ${vertical.name} Pros`}
+    city={cityData.name}
+    state={stateData.name}
+    stateAbbr={stateData.abbreviation}
+    vertical={vertical.id as 'hvac' | 'plumbing' | 'roofing'}
+    service={serviceSlug}
+    phone={brand.phone}
+  />
+</BaseLayout>

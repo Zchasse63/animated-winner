@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  vertical?: 'hvac' | 'plumbing' | 'roofing';
+  state?: string;
+  city?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = 'Get connected with top-rated local HVAC professionals. 24/7 emergency service, licensed & insured contractors.',
+  vertical = 'hvac',
+  state = '',
+  city = '',
+  canonicalUrl,
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'http://localhost:4321';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title}>
+  <meta name="description" content={description}>
+
+  <!-- Robots -->
+  {noIndex && <meta name="robots" content="noindex, nofollow">}
+
+  <!-- Canonical URL -->
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl || siteUrl}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content={title}>
+  <meta property="twitter:description" content={description}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- TrackDrive Call Tracking integration point (requires TRACKDRIVE_API_KEY configuration) -->
+
+  <!-- TrustedForm -->
+  <script type="text/javascript">
+    (function() {
+      var tf = document.createElement('script');
+      tf.type = 'text/javascript'; tf.async = true;
+      tf.src = ("https:" == document.location.protocol ? 'https' : 'http') +
+               "://api.trustedform.com/trustedform.js?field=xxTrustedFormCertUrl&ping_field=xxTrustedFormPingUrl&l=" +
+               new Date().getTime() + Math.random();
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(tf, s);
+    })();
+  </script>
+  <noscript>
+    <img src="https://api.trustedform.com/ns.gif" />
+  </noscript>
+
+  <slot name="head" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <slot />
+</body>
+</html>

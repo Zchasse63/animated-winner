@@ -1,0 +1,23 @@
+{
+  "name": "@leadgen/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared components, layouts, and utilities for lead generation platform",
+  "exports": {
+    ".": "./src/index.ts",
+    "./components/*": "./src/components/*",
+    "./layouts/*": "./src/layouts/*",
+    "./lib/*": "./src/lib/*",
+    "./config/*": "./src/config/*",
+    "./styles/*": "./src/styles/*"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.89.0",
+    "zod": "^3.25.76"
+  },
+  "peerDependencies": {
+    "astro": "^5.16.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}

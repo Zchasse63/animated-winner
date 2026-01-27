@@ -1,0 +1,155 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate antialiased;
+  }
+
+  /* Heading styles */
+  h1 {
+    @apply text-h1-mobile md:text-h1 text-navy;
+  }
+
+  h2 {
+    @apply text-h2 text-navy;
+  }
+
+  h3 {
+    @apply text-h3 text-navy;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-teal ring-offset-2;
+  }
+}
+
+@layer components {
+  /* Primary CTA Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-orange hover:bg-orange-dark
+           text-white font-semibold text-base
+           px-6 py-3 h-14
+           rounded-button
+           shadow-button hover:shadow-button-hover
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white hover:bg-gray-50
+           text-navy font-semibold text-base
+           px-6 py-3 h-14
+           rounded-button
+           border-2 border-gray-200 hover:border-teal
+           transition-all duration-200;
+  }
+
+  /* Form Input */
+  .form-input {
+    @apply w-full h-12
+           px-4 py-3
+           bg-white
+           border border-gray-200
+           rounded-input
+           text-slate text-base
+           placeholder:text-gray-400
+           focus:border-teal focus:ring-2 focus:ring-teal/20
+           transition-all duration-200;
+  }
+
+  /* Form Label */
+  .form-label {
+    @apply block text-body-small font-medium text-slate mb-1;
+  }
+
+  /* Form Error */
+  .form-error {
+    @apply text-error text-body-small mt-1;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-white rounded-card shadow-card p-card-mobile md:p-card;
+  }
+
+  /* Section Container */
+  .section {
+    @apply py-section-mobile md:py-section px-4;
+  }
+
+  /* Container */
+  .container-narrow {
+    @apply max-w-3xl mx-auto;
+  }
+
+  .container-wide {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* Trust Badge */
+  .trust-badge {
+    @apply inline-flex items-center gap-2
+           bg-white/10 border border-white/20
+           rounded-lg px-4 py-2
+           text-white text-body-small font-medium;
+  }
+
+  .trust-badge-icon {
+    @apply w-5 h-5 text-success;
+  }
+
+  /* Selection Card (for form steps) */
+  .selection-card {
+    @apply flex flex-col items-center justify-center gap-2
+           p-5
+           bg-white
+           border-2 border-gray-200
+           rounded-card
+           cursor-pointer
+           transition-all duration-200
+           hover:border-teal hover:shadow-card;
+  }
+
+  .selection-card.selected {
+    @apply border-teal bg-teal/5;
+  }
+
+  .selection-card-icon {
+    @apply w-8 h-8 text-teal;
+  }
+
+  .selection-card-label {
+    @apply text-body-small font-semibold text-navy text-center;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text balance for better headline wrapping */
+  .text-balance {
+    text-wrap: balance;
+  }
+}

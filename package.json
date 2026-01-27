@@ -1,14 +1,20 @@
 {
-  "name": "hvac-leadgen-platform",
+  "name": "hvac-leadgen-monorepo",
   "type": "module",
   "version": "1.0.0",
-  "description": "HVAC/Plumbing/Roofing lead generation platform for Southeast US",
+  "description": "HVAC/Plumbing/Roofing lead generation platform for Southeast US - pnpm monorepo",
+  "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "dev:hvac": "pnpm --filter @leadgen/hvac dev",
+    "dev:plumbing": "pnpm --filter @leadgen/plumbing dev",
+    "dev:roofing": "pnpm --filter @leadgen/roofing dev",
+    "build:all": "pnpm --filter @leadgen/hvac build && pnpm --filter @leadgen/plumbing build && pnpm --filter @leadgen/roofing build",
+    "build:hvac": "pnpm --filter @leadgen/hvac build",
+    "build:plumbing": "pnpm --filter @leadgen/plumbing build",
+    "build:roofing": "pnpm --filter @leadgen/roofing build",
+    "preview:hvac": "pnpm --filter @leadgen/hvac preview",
+    "preview:plumbing": "pnpm --filter @leadgen/plumbing preview",
+    "preview:roofing": "pnpm --filter @leadgen/roofing preview",
     "seed:florida": "npx tsx scripts/seed-florida.ts",
     "seed:pages": "npx tsx scripts/seed-pages.ts",
     "generate:sitemap": "npx tsx scripts/generate-sitemap.ts",
@@ -22,28 +28,13 @@
     "hvac",
     "leadgen",
     "astro",
-    "supabase"
+    "supabase",
+    "monorepo"
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@astrojs/netlify": "^6.6.4",
-    "@astrojs/node": "^9.5.1",
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/tailwind": "^6.0.2",
-    "@hookform/resolvers": "^5.2.2",
-    "@supabase/supabase-js": "^2.89.0",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.6",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-hook-form": "^7.69.0",
-    "tailwindcss": "^3.4.19",
-    "typescript": "^5.9.3",
-    "zod": "^3.25.76"
-  },
   "devDependencies": {
-    "tsx": "^4.21.0"
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

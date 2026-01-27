@@ -1,0 +1,23 @@
+{
+  "name": "@leadgen/hvac",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "HVAC lead generation app",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^6.6.4",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "@hookform/resolvers": "^5.2.2",
+    "@leadgen/shared": "workspace:*",
+    "astro": "^5.16.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hook-form": "^7.69.0",
+    "tailwindcss": "^3.4.19"
+  }
+}
